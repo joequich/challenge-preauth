@@ -38,21 +38,21 @@ const initalArr: Array<Item> = [
     },
 ];
 
-const gildedRose = new GildedRose(initalArr);
+// const gildedRose = new GildedRose(initalArr);
 
-for (let i = 1; i <= 15; i++) {
-    console.log(`\n*** Day #${i}:`)
-    console.table(initalArr);
-    gildedRose.updateQuality();
-}
-
-// const items: Array<Item> = [];
-
-// for (let i = 0; i < 5000000; i++) {
-//     items.push(...initalArr);
+// for (let i = 1; i <= 15; i++) {
+//     console.log(`\n*** Day #${i}:`)
+//     console.table(initalArr);
+//     gildedRose.updateQuality();
 // }
 
-// const obj = new GildedRose(items);
-// console.time('Time updateQuality');
-//     obj.updateQuality();
-// console.timeEnd('Time updateQuality');
+const items: Array<Item> = [];
+
+for (let i = 0; i < 5000000; i++) {
+    items.push(...initalArr);
+}
+
+const obj = new GildedRose(items);
+console.time('Time updateQuality');
+    obj.updateQuality();
+console.timeEnd('Time updateQuality');
