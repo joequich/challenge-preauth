@@ -1,3 +1,5 @@
+import { Item } from "../gilded-rose";
+
 export interface Strategy {
-    changeQuality: (sellIn: number, quality: number) =>  number;
+    changeQuality: (item:Item) => void;
 }

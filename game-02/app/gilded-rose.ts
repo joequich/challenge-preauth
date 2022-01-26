@@ -22,23 +22,25 @@ export class GildedRose {
     }
 
     updateQuality() {
-        for (let i = 0; i < this.items.length; i++) {   // recorrer items
+        const agedBrieStrategy = new AgedBrieStrategy();
+        const backstageStrategy = new BackstageStrategy();
+        const conjuredStrategy = new ConjuredStrategy();
 
+        for (let i = 0; i < this.items.length; i++) {   // recorrer items
             if (this.items[i].name === 'Aged Brie') {
-                this.context.setStrategy(new AgedBrieStrategy());
+                this.context.setStrategy(agedBrieStrategy);
             }
 
             if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
-                this.context.setStrategy(new BackstageStrategy());
+                this.context.setStrategy(backstageStrategy);
             }
 
             if (this.items[i].name === 'Conjured') {
-                this.context.setStrategy(new ConjuredStrategy());
+                this.context.setStrategy(conjuredStrategy);
             }
 
             if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].sellIn = this.items[i].sellIn - 1;
-                this.items[i].quality = this.context.updateQuality(this.items[i].sellIn, this.items[i].quality);
+                this.context.setQuality(this.items[i]);
             }
         }
         return this.items;

@@ -1,49 +1,63 @@
+import { Item } from "../gilded-rose";
 import { Strategy } from "./interface"
 
 export class NormalStrategy implements Strategy{
-    changeQuality(sellIn: number, quality: number){
-        if(sellIn < 0) {
-            return quality - 2;
+    changeQuality(item: Item){
+        item.sellIn--;
+
+        if(item.quality === 0) return;
+
+        if(item.sellIn < 0) {
+            item.quality -= 2;
         } else {
-            return quality - 1;
+            item.quality -= 1;
         }
     }
 }
 export class BackstageStrategy implements Strategy{
-    changeQuality(sellIn: number, quality: number){
-        let incrementSpeed = 1;
+    changeQuality(item: Item){
+        item.sellIn--;
 
-        if (sellIn < 0) {
-            return 0;
+        if(item.quality >= 50) return;
+
+        if (item.sellIn < 0) {
+            return item.quality = 0;
         }
 
-        if (sellIn < 6) {
-            incrementSpeed = 3;
-        }else if (sellIn < 11) {
-            incrementSpeed = 2;
+        if (item.sellIn < 6) {
+            item.quality += 3;
+        } else if (item.sellIn < 11) {
+            item.quality += 2;
+        } else {
+            item.quality += 1;
         }
 
-        if(sellIn < 0) incrementSpeed = incrementSpeed * 2;
-       
-        return quality + incrementSpeed;
     }
 }
 export class AgedBrieStrategy implements Strategy{
-    changeQuality(sellIn: number, quality: number){
-        if(sellIn < 0) {
-            return quality + 2;
+    changeQuality(item: Item){
+        item.sellIn--;
+
+        if(item.quality >= 50) return;
+
+        if(item.sellIn < 0) {
+            item.quality += 2;
         } else {
-            return quality + 1;
+            item.quality += 1;
         }
     }
 }
 
 export class ConjuredStrategy implements Strategy{
-    changeQuality(sellIn: number, quality: number){
-        if(sellIn < 0) {
-            return quality - 4;
+    changeQuality(item: Item){
+        item.sellIn--;
+
+        if(item.quality === 0) return;
+        
+        if(item.sellIn < 0) {
+            item.quality -= 4;
         } else {
-            return quality - 2;
+            item.quality -= 2;
         }
     }
 }

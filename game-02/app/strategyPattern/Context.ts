@@ -1,3 +1,4 @@
+import { Item } from "../gilded-rose";
 import { Strategy } from "./interface"
 
 export class Context {
@@ -11,8 +12,7 @@ export class Context {
         this.strategy = strategy;
     }
 
-    updateQuality(sellIn: number, quality: number) {
-        if(!(quality > 0 && quality < 50)) return quality;
-        return this.strategy.changeQuality(sellIn, quality);
+    setQuality(item: Item) {
+        this.strategy.changeQuality(item);
     }
 }
